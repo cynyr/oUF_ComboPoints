@@ -1,0 +1,1 @@
+A simple display for combo points for rogues, and kitty druids. Will have options for font size and color changing later. Perhaps a "runebar" like view as well.Perhaps a "combo bar" plugin is a better idea for that, as compoints.lua assummes a fontsting object, and not a bar.
