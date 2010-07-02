@@ -37,15 +37,22 @@ local function style(self, unit)
     self:SetBackdropColor(0, 0, 0, 0)
     self:SetAttribute('initial-height', 10)
     self:SetAttribute('initial-width', 10)
+    self:Show()
+    local points = self:CreateFontString(nil, 'OVERLAY')
+    points:SetFont(font, 18, "OUTLINE")
+    points:SetTextColor(1,1,1,1)
+    points:SetAllPoints(self)
+    points.frequentUpdates = 0.25
+    self:Tag(points, '[cpoints]')
 
-    self.CPoints = self:CreateFontString(nil, 'OVERLAY')
-    self.CPoints:SetFont(font, 18, "OUTLINE")
-    self.CPoints:SetTextColor(0,0,0,1)
-    self.CPoints:SetPoint('CENTER', self, 0,0)
-    self.CPoints:SetTextColor(1, 1, 1)
-    self.CPoints:SetJustifyH('RIGHT')
-    self.CPoints.unit = PlayerFrame.unit
-    self:RegisterEvent('UNIT_COMBO_POINTS', updateCombo)
+    --self.CPoints = self:CreateFontString(nil, 'OVERLAY')
+    --self.CPoints:SetFont(font, 18, "OUTLINE")
+    --self.CPoints:SetTextColor(0,0,0,1)
+    --self.CPoints:SetPoint('CENTER', self, 0,0)
+    --self.CPoints:SetTextColor(1, 1, 1)
+    --self.CPoints:SetJustifyH('RIGHT')
+    --self.CPoints.unit = PlayerFrame.unit
+    --self:RegisterEvent('UNIT_COMBO_POINTS', updateCombo)
 end
 
 oUF:RegisterStyle('ComboPoints', style)
