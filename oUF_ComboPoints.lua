@@ -29,14 +29,14 @@ local function updateCombo(self, event, unit)
 	end
 end
 
-local function style(self, unit)
+local function style(self, unit, isSingle)
     --self:SetScript('OnEnter', UnitFrame_OnEnter)
     --self:SetScript('OnLeave', UnitFrame_OnLeave)
     --self:SetBackdrop(backdrop)
     --The forth arg controls Alpha, thats handy to know.
     self:SetBackdropColor(0, 0, 0, 0)
-    self:SetAttribute('initial-height', 10)
-    self:SetAttribute('initial-width', 10)
+    self:SetAttribute('initial-height', 40)
+    self:SetAttribute('initial-width', 40)
     self:Show()
     local points = self:CreateFontString(nil, 'OVERLAY')
     points:SetFont(font, 18, "OUTLINE")
@@ -44,6 +44,9 @@ local function style(self, unit)
     points:SetAllPoints(self)
     points.frequentUpdates = 0.25
     self:Tag(points, '[cpoints]')
+    if(isSingle) then
+        self:SetSize(40, 40)
+    end
 
     --self.CPoints = self:CreateFontString(nil, 'OVERLAY')
     --self.CPoints:SetFont(font, 18, "OUTLINE")
@@ -54,6 +57,12 @@ local function style(self, unit)
     --self.CPoints.unit = PlayerFrame.unit
     --self:RegisterEvent('UNIT_COMBO_POINTS', updateCombo)
 end
+
+local UnitSpecific = {
+    player = function(self, ...)
+        style(self, ...)
+    end
+}
 
 oUF:RegisterStyle('ComboPoints', style)
 oUF:SetActiveStyle('ComboPoints')
